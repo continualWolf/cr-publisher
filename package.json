@@ -1,0 +1,24 @@
+{
+  "name": "cr-publisher",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/continualWolf/cr-publisher.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/continualWolf/cr-publisher/issues"
+  },
+  "homepage": "https://github.com/continualWolf/cr-publisher#readme",
+  "dependencies": {
+    "redis": "^5.10.0"
+  }
+}

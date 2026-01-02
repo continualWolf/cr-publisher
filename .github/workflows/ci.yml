@@ -1,0 +1,36 @@
+
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+# publisher Service Job
+  publisher-service:
+    name: publisher Service
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js for publisher Service
+        uses: actions/setup-node@v3
+        with:
+          node-version: '22'
+
+      - name: Install dependencies for publisher Service
+        run: npm install
+
+      - name: Build Docker image for publisher Service
+        run: docker build -t cr-publisher .
+
+      - name: Log in to Docker Hub
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
+      - name: Push publisher Service to Docker Hub
+        run: |
+          docker tag cr-publisher ${{ secrets.DOCKER_USERNAME }}/cr-publisher:latest
+          docker push ${{ secrets.DOCKER_USERNAME }}/cr-publisher:latest
